@@ -18,7 +18,7 @@
 namespace Stormpath\Lumen\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Routing\Controller;
+use Laravel\Lumen\Routing\Controller;
 use Stormpath\Resource\ResourceError;
 use Event;
 use Stormpath\Lumen\Exceptions\ActionAbortedException;

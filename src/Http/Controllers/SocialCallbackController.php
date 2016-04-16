@@ -19,7 +19,7 @@ namespace Stormpath\Lumen\Http\Controllers;
 
 use Illuminate\Cookie\CookieJar;
 use Illuminate\Http\Request;
-use Illuminate\Routing\Controller;
+use Laravel\Lumen\Routing\Controller;
 use Illuminate\Support\Facades\Log;
 use Stormpath\Lumen\Exceptions\SocialLoginException;
 use Stormpath\Lumen\Http\Helpers\IdSiteSessionHelper;

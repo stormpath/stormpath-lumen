@@ -18,7 +18,7 @@
 namespace Stormpath\Lumen\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Routing\Controller;
+use Laravel\Lumen\Routing\Controller;
 use Stormpath\Authc\Api\OAuthClientCredentialsRequestAuthenticator;
 use Stormpath\Authc\Api\OAuthRequestAuthenticator;
 use Stormpath\Oauth\OauthGrantAuthenticationResult;
