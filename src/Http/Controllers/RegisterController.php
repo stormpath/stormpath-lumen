@@ -73,7 +73,7 @@ class RegisterController extends Controller
 
         try {
             $registerFields = $this->setRegisterFields();
-
+//            dd($registerFields);
             $account = \Stormpath\Resource\Account::instantiate($registerFields);
 
             app('cache.store')->forget('stormpath.application');
@@ -96,7 +96,6 @@ class RegisterController extends Controller
             if ($customDataAdded) {
                 $account->save();
             }
-
 
             if(config('stormpath.web.register.autoLogin') == false) {
                 return $this->respondWithAccount($account, new Cookie('access'), new Cookie('refresh'));

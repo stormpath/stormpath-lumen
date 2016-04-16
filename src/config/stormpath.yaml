@@ -51,7 +51,7 @@ web:
     # autoLogin is possible only if the email verification feature is disabled
     # on the default account store of the defined Stormpath
     # application.
-    autoLogin: true
+    autoLogin: false
     form:
       fields:
         givenName:

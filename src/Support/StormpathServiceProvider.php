@@ -379,7 +379,10 @@ class StormpathServiceProvider extends ServiceProvider
 
         if($accountCreationPolicy->verificationEmailStatus == Stormpath::ENABLED) {
             config(['stormpath.web.verifyEmail.enabled' => true]);
-            return;
+        }
+
+        if(config('stormpath.web.verifyEmail.enabled') && config('stormpath.web.register.autoLogin')) {
+            throw new \InvalidArgumentException('AutoLogin and Verify are both enabled.  Either disable Auto Login, or turn off verification email.');
         }
     }
 
