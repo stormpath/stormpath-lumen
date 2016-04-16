@@ -19,7 +19,6 @@ namespace Stormpath\Lumen\Http\Controllers;
 
 use Laravel\Lumen\Routing\Controller;
 use Illuminate\Http\Request;
-use Illuminate\Validation\Factory as Validator;
 use Stormpath\Lumen\Http\Traits\AuthenticatesUser;
 use Stormpath\Lumen\Http\Traits\Cookies;
 use Stormpath\Resource\Account;
