@@ -3,6 +3,14 @@ Change Log
 
 All library changes, in descending order.
 
+Version 0.1.1
+-----------------
+
+** Released April 16, 2016 **
+
+- Fixed a bug in registration around autoLogin option not working correctly
+- Enabled /me endpoint by default
+
 Version 0.1.0
 -----------------
 
