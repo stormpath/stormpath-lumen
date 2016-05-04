@@ -41,8 +41,7 @@ after_success:
 - test -z "$DEPLOY_DOCS" || rake deploy
 - test -z "$DEPLOY_DOCS" || cd ..
 before_install:
-- openssl aes-256-cbc -K $encrypted_6460fd32304f_key -iv $encrypted_6460fd32304f_iv
-  -in deploy-key.enc -out ~/.ssh/id_rsa -d
+- openssl aes-256-cbc -K $encrypted_868953592e15_key -iv $encrypted_868953592e15_iv -in id_rsa.enc -out ~/.ssh/id_rsa -d
 - chmod 600 ~/.ssh/id_rsa
 matrix:
   include:
