@@ -71,7 +71,6 @@ if (config('stormpath.web.verifyEmail.enabled')) {
  |--------------------------------------------------------------------------
  */
 if (config('stormpath.web.forgotPassword.enabled')) {
-    $this->app->get(config('stormpath.web.forgotPassword.uri'), ['as' => 'stormpath.forgotPassword', 'uses' => 'Stormpath\Lumen\Http\Controllers\ForgotPasswordController@getForgotPassword']);
     $this->app->post(config('stormpath.web.forgotPassword.uri'), ['as' => 'stormpath.forgotPassword', 'uses' => 'Stormpath\Lumen\Http\Controllers\ForgotPasswordController@postForgotPassword']);
 }
 

@@ -1,5 +1,3 @@
-[![Build Status](https://api.travis-ci.org/stormpath/stormpath-lumen.svg?branch=master,develop)](https://travis-ci.org/stormpath/stormpath-lumen)
-[![Codecov](https://img.shields.io/codecov/c/github/stormpath/stormpath-lumen.svg)](https://codecov.io/github/stormpath/stormpath-lumen)
 [![Latest Stable Version](https://poser.pugx.org/stormpath/lumen/v/stable.svg)](https://packagist.org/packages/stormpath/lumen)
 [![Latest Unstable Version](https://poser.pugx.org/stormpath/lumen/v/unstable.svg)](https://packagist.org/packages/stormpath/lumen)
 [![License](https://poser.pugx.org/stormpath/lumen/license.svg)](https://packagist.org/packages/stormpath/lumen)
@@ -43,10 +41,10 @@ Follow these steps to add Stormpath user authentication to your Lumen app.
 
 6. **Include It In Your App**
 
-   Open you `config/app.php` file and add the following to your providers section
+   Open you `bootstrap/app.php` file and add the following to your providers section
 
   ```php
-  Stormpath\Lumen\Support\StormpathServiceProvider::class
+  $app->register(\Stormpath\Lumen\Support\StormpathServiceProvider::class);
   ```
 
 7. **Configure It**
