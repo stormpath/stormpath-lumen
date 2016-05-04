@@ -6,6 +6,15 @@ Change Log
 All library changes, in descending order. something
 
 
+Version 0.1.2
+-------------
+
+** Released May 4, 2016 **
+
+- Star Wars Day!
+- Documentation build and auto deploy
+- Update Routes File
+
 Version 0.1.1
 -------------
 
