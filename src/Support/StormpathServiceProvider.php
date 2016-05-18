@@ -31,7 +31,7 @@ class StormpathServiceProvider extends ServiceProvider
 {
 
     const INTEGRATION_NAME = 'stormpath-lumen';
-    const INTEGRATION_VERSION = '0.1.2';
+    const INTEGRATION_VERSION = '0.1.3';
 
     /**
      * Register the service provider.
@@ -52,10 +52,13 @@ class StormpathServiceProvider extends ServiceProvider
 
         $this->registerCommands();
 
+
+
     }
 
     public function boot()
     {
+        $this->registerMiddleware();
         $this->warmResources();
 
         $this->checkForSocialProviders();
@@ -406,6 +409,13 @@ class StormpathServiceProvider extends ServiceProvider
         $this->commands(
             'stormpath.config.command'
         );
+    }
+
+    private function registerMiddleware()
+    {
+        $this->app->routeMiddleware(['stormpath.auth' => \Stormpath\Lumen\Http\Middleware\Authenticate::class]);
+        $this->app->routeMiddleware(['stormpath.guest' => \Stormpath\Lumen\Http\Middleware\RedirectIfAuthenticated::class]);
+
     }
 
 

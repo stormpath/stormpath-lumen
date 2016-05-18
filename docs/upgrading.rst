@@ -6,6 +6,9 @@ Upgrade Guide
 This page contains specific upgrading instructions to help you migrate between
 Stormpath-Lumen releases.
 
+Version 0.1.2 -> Version 0.1.3
+------------------------------
+No Changes
 
 Version 0.1.1 -> Version 0.1.2
 ------------------------------
