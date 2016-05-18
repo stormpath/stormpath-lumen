@@ -109,7 +109,15 @@ clear your laravel cache. Do this by running ``php artisan cache:clear`` from th
 command line.  Your next request after doing this will take a little longer, but
 the cache will be refreshed with the new settings.
 
+For information on setting up caching in Lumen, Visit the `Lumen documentation`_.
+
+.. note::
+
+  To get caching working correctly with the Stormpath package, make sure to register
+  the Caching Service Provider BEFORE the Stormpath Service Provider.
+
 
 .. _Stormpath applications: https://api.stormpath.com/v#!applications
 .. _Stormpath dashboard: https://api.stormpath.com/ui/dashboard
 .. _Stormpath/Lumen: https://github.com/stormpath/stormpath-lumen
+.. _Lumen documentation: https://lumen.laravel.com/docs/5.2/cache

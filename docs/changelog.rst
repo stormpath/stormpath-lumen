@@ -5,6 +5,13 @@ Change Log
 
 All library changes, in descending order. something
 
+Version 0.1.3
+-------------
+
+** Released May 18, 2016 **
+
+- Added the ability to validate Bearer token with 'stormpath.auth' locally
+- Automatically adding stormpath.auth and stormpath.guest middleware
 
 Version 0.1.2
 -------------
