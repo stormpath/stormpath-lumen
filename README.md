@@ -1,6 +1,9 @@
 [![Latest Stable Version](https://poser.pugx.org/stormpath/lumen/v/stable.svg)](https://packagist.org/packages/stormpath/lumen)
 [![Latest Unstable Version](https://poser.pugx.org/stormpath/lumen/v/unstable.svg)](https://packagist.org/packages/stormpath/lumen)
 [![License](https://poser.pugx.org/stormpath/lumen/license.svg)](https://packagist.org/packages/stormpath/lumen)
+[![Chat](https://img.shields.io/badge/chat-on%20freenode%20-green.svg)](http://webchat.freenode.net/?channels=#stormpath)
+[![Chat](https://img.shields.io/badge/support-support@stormpath.com-blue.svg)](mailto:support@stormpath.com?subject=Stormpath+Lumen+Integration)
+
 
 ## Getting Started
 
