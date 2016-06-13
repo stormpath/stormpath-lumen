@@ -31,7 +31,7 @@ class StormpathServiceProvider extends ServiceProvider
 {
 
     const INTEGRATION_NAME = 'stormpath-lumen';
-    const INTEGRATION_VERSION = '0.1.3';
+    const INTEGRATION_VERSION = '0.1.4';
 
     /**
      * Register the service provider.
@@ -225,16 +225,19 @@ class StormpathServiceProvider extends ServiceProvider
 
         $mappings = $application->getAccountStoreMappings(['expand'=>'accountStore']);
         $accountStoreArray = [];
-
+        
         foreach($mappings as $mapping) {
-            $accountStoreArray[] = [
+            $accountStoreArrayValues = [
                 'href' => $mapping->accountStore->href,
-                'name' => $mapping->accountStore->name,
-                'provider' => [
-                    'href' => $mapping->accountStore->provider->href,
-                    'providerId' => $mapping->accountStore->provider->providerId,
-                ]
+                'name' => $mapping->accountStore->name
             ];
+            if(isset($mapping->accountStore->provider)) {
+                $accountStoreArrayValues['provider'] = [
+                    'href' => $mapping->accountStore->provider->href,
+                    'providerId' => $mapping->accountStore->provider->providerId
+                ];
+            }
+            $accountStoreArray[] = $accountStoreArrayValues;
         }
 
 

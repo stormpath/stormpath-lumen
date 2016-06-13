@@ -5,6 +5,15 @@ Change Log
 
 All library changes, in descending order. something
 
+Version 0.1.4
+-------------
+
+** Released June 13, 2016 **
+
+- Flatten accountStores in register/login form (Fixes #2)
+- Only set provider array on account store if set
+- Remove reference to IdSite in yaml config file (Fixes #1)
+
 Version 0.1.3
 -------------
 

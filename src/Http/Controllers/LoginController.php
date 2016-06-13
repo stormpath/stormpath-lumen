@@ -135,9 +135,7 @@ class LoginController extends Controller
                     ]
                 ]
             ],
-            'accountStores' => [
-                app('cache.store')->get('stormpath.accountStores')
-            ],
+            'accountStores' => app('cache.store')->get('stormpath.accountStores'),
 
         ];
         return response($data)->header('Content-Type', 'application/json');

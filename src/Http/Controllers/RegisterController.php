@@ -180,9 +180,7 @@ class RegisterController extends Controller
             'form' => [
                 'fields' => $fields
             ],
-            'accountStores' => [
-                app('cache.store')->get('stormpath.accountStores')
-            ]
+            'accountStores' => app('cache.store')->get('stormpath.accountStores')
         ];
 
         return response()->json($data);
