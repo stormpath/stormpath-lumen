@@ -225,16 +225,19 @@ class StormpathServiceProvider extends ServiceProvider
 
         $mappings = $application->getAccountStoreMappings(['expand'=>'accountStore']);
         $accountStoreArray = [];
-
+        
         foreach($mappings as $mapping) {
-            $accountStoreArray[] = [
+            $accountStoreArrayValues = [
                 'href' => $mapping->accountStore->href,
-                'name' => $mapping->accountStore->name,
-                'provider' => [
-                    'href' => $mapping->accountStore->provider->href,
-                    'providerId' => $mapping->accountStore->provider->providerId,
-                ]
+                'name' => $mapping->accountStore->name
             ];
+            if(isset($mapping->accountStore->provider)) {
+                $accountStoreArrayValues['provider'] = [
+                    'href' => $mapping->accountStore->provider->href,
+                    'providerId' => $mapping->accountStore->provider->providerId
+                ];
+            }
+            $accountStoreArray[] = $accountStoreArrayValues;
         }
 
 
