@@ -23,16 +23,16 @@
         "php": ">=5.5",
         "stormpath/sdk": "~1.14",
         "illuminate/support": "~5.2",
-        "bretterer/iso_duration_converter": "^0.1.0"
-    },
-    "require-dev": {
-        "phpunit/phpunit": "~4.0",
-        "mockery/mockery": "~0.9",
         "illuminate/http": "~5.2",
         "illuminate/routing": "~5.2",
         "illuminate/validation": "~5.2",
         "illuminate/cookie": "~5.2",
         "illuminate/console": "~5.2",
+        "bretterer/iso_duration_converter": "^0.1.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "~4.0",
+        "mockery/mockery": "~0.9",
         "laravel/lumen-framework": "~5.2"
     },
     "autoload": {
