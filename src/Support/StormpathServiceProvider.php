@@ -31,7 +31,7 @@ class StormpathServiceProvider extends ServiceProvider
 {
 
     const INTEGRATION_NAME = 'stormpath-lumen';
-    const INTEGRATION_VERSION = '0.1.4';
+    const INTEGRATION_VERSION = '0.1.5';
 
     /**
      * Register the service provider.
