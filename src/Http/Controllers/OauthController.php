@@ -48,12 +48,19 @@ class OauthController extends Controller
     /** @codeCoverageIgnore */
     private function doClientCredentialsGrantType($request)
     {
+        if(!config('stormpath.web.oauth2.client_credentials.enabled')) {
+            return $this->respondUnsupportedGrantType();
+        }
         try {
             $request = \Stormpath\Authc\Api\Request::createFromGlobals();
             $result = (new OAuthClientCredentialsRequestAuthenticator(app('stormpath.application')))->authenticate($request);
 
-            $tokenResponse = $result->tokenResponse;
-            return $tokenResponse->toJson();
+            $tokenResponse = json_decode($result->getAccessToken());
+            return response()->json([
+                'access_token' => $tokenResponse->access_token,
+                'token_type' => $tokenResponse->token_type,
+                'expires_in' => config('stormpath.web.oauth2.client_credentials.accessToken.ttl')
+            ]);
         } catch(\Exception $e) {
             return $this->respondWithInvalidRequest($e->getMessage());
         }
