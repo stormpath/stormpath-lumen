@@ -52,6 +52,9 @@ class OauthController extends Controller
             return $this->respondUnsupportedGrantType();
         }
         try {
+            // TEMP
+            $this->setGrantTypeAsQuery($request);
+
             $request = \Stormpath\Authc\Api\Request::createFromGlobals();
             $result = (new OAuthClientCredentialsRequestAuthenticator(app('stormpath.application')))->authenticate($request);
 
@@ -133,5 +136,23 @@ class OauthController extends Controller
             'message' => $message,
             'error' => 'invalid_request'
         ], 400);
+    }
+
+    private function setGrantTypeAsQuery($request)
+    {
+        $request->query->replace(['grant_type' => $request->input('grant_type')]);
+
+        $currentString = $_SERVER['QUERY_STRING'];
+        $newString = $currentString;
+
+        if(!empty($currentString)) {
+            $newString .= '&';
+        }
+
+        $newString .= 'grant_type='.$request->input('grant_type');
+
+        $_SERVER['QUERY_STRING'] = $newString;
+        $_SERVER['REQUEST_URI'] = '/'.$request->path().'?'.$newString;
+
     }
 }
