@@ -18,10 +18,13 @@
 namespace Stormpath\Lumen\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 use Laravel\Lumen\Routing\Controller;
 use Stormpath\Authc\Api\OAuthClientCredentialsRequestAuthenticator;
 use Stormpath\Authc\Api\OAuthRequestAuthenticator;
+use Stormpath\Lumen\Support\Oauth;
 use Stormpath\Oauth\OauthGrantAuthenticationResult;
+use Stormpath\Stormpath;
 
 class OauthController extends Controller
 {
@@ -51,22 +54,35 @@ class OauthController extends Controller
         if(!config('stormpath.web.oauth2.client_credentials.enabled')) {
             return $this->respondUnsupportedGrantType();
         }
-        try {
-            // TEMP
-            $this->setGrantTypeAsQuery($request);
 
-            $request = \Stormpath\Authc\Api\Request::createFromGlobals();
-            $result = (new OAuthClientCredentialsRequestAuthenticator(app('stormpath.application')))->authenticate($request);
-
-            $tokenResponse = json_decode($result->getAccessToken());
-            return response()->json([
-                'access_token' => $tokenResponse->access_token,
-                'token_type' => $tokenResponse->token_type,
-                'expires_in' => config('stormpath.web.oauth2.client_credentials.accessToken.ttl')
-            ]);
-        } catch(\Exception $e) {
-            return $this->respondWithInvalidRequest($e->getMessage());
+        if(!$this->hasAuthorizationHeader($request)) {
+            return $this->respondWithInvalidRequest('You must supply Basic Authorization Header');
         }
+
+        $token = base64_decode($this->basicToken($request));
+
+        if('' == $token) {
+            return $this->respondWithInvalidRequest('The authorization header is in an invalid form');
+        }
+
+        list($id, $secret) = explode(':',$token);
+
+
+        $oauth = new Oauth();
+        $oauth->clientId = $id;
+        $oauth->clientSecret = $secret;
+        $oauth->grantType = 'client_credentials';
+
+        $response = app('stormpath.client')->getDataStore()->create(app('stormpath.application')->href . '/oauth/token', $oauth, \Stormpath\Lumen\Support\OauthResponse::class);
+
+        return response()->json([
+            'access_token' => $response->accessToken,
+            'token_type' => $response->tokenType,
+            'expires_in' => $response->expiresIn,
+            'stormpath_access_token_href' => $response->accessTokenHref
+        ]);
+
+
     }
 
     private function doPasswordGrantType($request)
@@ -138,21 +154,24 @@ class OauthController extends Controller
         ], 400);
     }
 
-    private function setGrantTypeAsQuery($request)
+
+    private function hasAuthorizationHeader(Request $request)
     {
-        $request->query->replace(['grant_type' => $request->input('grant_type')]);
-
-        $currentString = $_SERVER['QUERY_STRING'];
-        $newString = $currentString;
-
-        if(!empty($currentString)) {
-            $newString .= '&';
-        }
-
-        $newString .= 'grant_type='.$request->input('grant_type');
-
-        $_SERVER['QUERY_STRING'] = $newString;
-        $_SERVER['REQUEST_URI'] = '/'.$request->path().'?'.$newString;
-
+        return null !== $request->header('Authorization');
     }
+
+    /**
+     * Get the basic token from the request headers.
+     *
+     * @return string|null
+     */
+    public function basicToken(Request $request)
+    {
+        $header = $request->header('Authorization', '');
+
+        if (Str::startsWith($header, 'Basic ')) {
+            return Str::substr($header, 6);
+        }
+    }
+
 }
