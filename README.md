@@ -17,6 +17,8 @@ Follow these steps to add Stormpath user authentication to your Lumen app.
 
   Open your key file and grab the **API Key ID** and **API Key Secret**, then add this to your `.env` file in the root of your project:
 
+  > You may need to create a `.env` file if this is a fresh install of lumen.
+
   ```php
   STORMPATH_CLIENT_APIKEY_ID=<YOUR-ID-HERE>
   STORMPATH_CLIENT_APIKEY_SECRET=<YOUR-SECRET-HERE>
@@ -58,19 +60,95 @@ Follow these steps to add Stormpath user authentication to your Lumen app.
   $ php artisan stormpath:config
   ```
 
+  This will create a `stormpath.yaml` file in the root of your project with all the options you are able to modify.  By default,
+  Login, Logout, OAuth, and Register routes will be enabled.  Other routes will be enabled based on your directory settings.
+
 8. **Login**
 
-  To access a protected route, the user must first login.
+  Working with an API, we suggest that you work with OAuth tokens.  We have created a route for your, `/oauth/tokens` where
+  you can do `client_credentials`, `password`, or `refresh` grant types.
 
-  You can login by visiting the `/login` URL and submitting the login form.
+  * **Client Credentials**
 
+  In this workflow, an api key and secret is provisioned for a stormpath account. These credentials can be exchanged for
+  an access token by making a POST request to `/oauth/token` on the web application. The request must look like this:
+
+  ```
+  POST /oauth/token
+  Authorization: Basic <base64UrlEncoded(apiKeyId:apiKeySecret)>
+
+  grant_type=client_credentials
+  ```
+
+  * **Password Grant**
+
+  In this workflow, an account can post their login (username or email) and password to the ``/oauth/token` endpoint,
+  with the following body data:
+
+  ```
+  POST /oauth/token
+
+  grant_type=password
+  &username=<username>
+  &password=<password>
+  ```
+
+  * **Refresh Grant**
+
+  The refresh grant type is required for clients using the password grant type to refresh their access_token.
+  Thus, it's automatically enabled alongside the password grant type.
+
+  An account can post their refresh_token with the following body data:
+
+  ```
+  POST /oauth/token
+  grant_type=refresh_token&
+  refresh_token=<refresh token>
+  ```
+
+  The product guide for token management: http://docs.stormpath.com/guides/token-management
 
 9. **Register**
 
-  To be able to login, your users first need an account.
+   To get the model for the registration form, make a `GET` request to `/register`.  This will return a JSON representation
+   of the form along with the available Account Stores.
 
-  Users can register by visiting the `/register` URL and submitting the
-  registration form.
+   ```
+   {
+     "form": {
+       "fields": [
+         {
+           "enabled": true,
+           "label": "First Name",
+           "placeholder": "First Name",
+           "required": true,
+           "type": "text"
+         },
+         {
+           "enabled": true,
+           "label": "Last Name",
+           "placeholder": "Last Name",
+           "required": true,
+           "type": "text"
+         },
+         ...
+       ]
+     },
+     "accountStores": [
+       {
+         "href": "https://api.stormpath.com/v1/directories/6t1orcyGhqLvObgvsohdYu",
+         "name": "Test Directory",
+         "provider": {
+           "href": "https://api.stormpath.com/v1/directories/6t1orcyGhqLvObgvsohdYu/provider",
+           "providerId": "stormpath"
+         }
+       }
+     ]
+   }
+   ```
+
+   When you want to register a new Account, take the user data from the form model and put into the
+   body of a `POST` request to the `/register` endpoint.
 
 10. **That's It!**
 
