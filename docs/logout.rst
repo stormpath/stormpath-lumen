@@ -24,3 +24,13 @@ following configuration::
         enabled: true
         uri: "/logout"
         nextUri: "/"
+
+Token Based Logging Out
+-----------------------
+
+If you logged in based on Oauth tokens, you will need to remove the token from the storage mechanism you used.
+After you do that, you will need to also delete the token from Stormpath.  Issue a request to the access
+token herf to get the object.  Then call the delete method::
+
+    $token = \Stormpath\Resource\AccessToken::get($accessTokenHref);
+    $token->delete();
