@@ -5,6 +5,13 @@ Change Log
 
 All library changes, in descending order. something
 
+Version 0.1.5
+-------------
+** Released August 2, 2016 **
+
+- Fixes client credentials grant type for oauth/token endpoint
+- Documentation Update
+
 Version 0.1.4
 -------------
 
