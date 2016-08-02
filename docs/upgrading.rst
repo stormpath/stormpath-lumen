@@ -6,6 +6,10 @@ Upgrade Guide
 This page contains specific upgrading instructions to help you migrate between
 Stormpath-Lumen releases.
 
+Version 0.1.4 -> Version 0.1.5
+------------------------------
+No Changes
+
 Version 0.1.3 -> Version 0.1.4
 ------------------------------
 Remove IdSite Section from stormpath.yaml file OR re-publish config
