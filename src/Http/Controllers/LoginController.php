@@ -156,6 +156,7 @@ class LoginController extends Controller
         $properties = ['account'=>[]];
         $config = config('stormpath.web.me.expand');
         $whiteListResources = [];
+        $blackListResources = ['emailVerificationToken', 'httpStatus'];
         foreach($config as $item=>$value) {
             if($value == true) {
                 $whiteListResources[] = $item;
@@ -166,9 +167,11 @@ class LoginController extends Controller
         foreach($propNames as $prop) {
             $property = $this->getPropertyValue($account, $prop);
 
-            if(is_object($property) && !in_array($prop, $whiteListResources)) {
+            if((is_object($property) || in_array($prop, $blackListResources)) && !in_array($prop, $whiteListResources)) {
                 continue;
             }
+
+
 
             $properties['account'][$prop] = $property;
         }
