@@ -5,6 +5,12 @@ Change Log
 
 All library changes, in descending order. something
 
+Version 0.1.6
+-------------
+** Released September 20, 2016 **
+
+- Documentation update for GTM
+
 Version 0.1.5
 -------------
 ** Released August 2, 2016 **
