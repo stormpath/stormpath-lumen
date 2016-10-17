@@ -3,6 +3,13 @@ Change Log
 
 All library changes, in descending order.
 
+Version 0.1.7
+-------------
+** Released October 17, 2016 **
+
+- Update Sphinx Theme
+- Simplify the doc deployment process
+
 Version 0.1.6
 -------------
 ** Released September 20, 2016 **
