@@ -68,10 +68,7 @@ class Authenticate
             if(config('stormpath.web.oauth2.password.validationStrategy') == 'local') {
                 \JWT::$leeway = 10;
                 $expanded = \JWT::decode($token, config('stormpath.client.apiKey.secret'), ['HS256']);
-                if ($expanded->exp > time()) {
-                    return true;
-                }
-                return false;
+                return $expanded->exp > time();
             }
 
             (new \Stormpath\Oauth\VerifyAccessToken(app('stormpath.application')))->verify($token);
