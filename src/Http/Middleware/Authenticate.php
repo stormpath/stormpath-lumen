@@ -66,8 +66,8 @@ class Authenticate
 
         try {
             if(config('stormpath.web.oauth2.password.validationStrategy') == 'local') {
-                \JWT::$leeway = 10;
-                $expanded = \JWT::decode($token, config('stormpath.client.apiKey.secret'), ['HS256']);
+                \Firebase\JWT\JWT::$leeway = 10;
+                $expanded = \Firebase\JWT\JWT::decode($token, config('stormpath.client.apiKey.secret'), ['HS256']);
                 if ($expanded->exp > time()) {
                     return true;
                 }
