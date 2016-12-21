@@ -5,6 +5,13 @@ Change Log
 
 All library changes, in descending order. something
 
+Version 0.1.7
+-------------
+
+**Released on Dec 21, 2016.**
+
+- Update JWT Code for Core SDK Updates
+
 Version 0.1.6
 -------------
 ** Released September 20, 2016 **
