@@ -3,11 +3,18 @@ Change Log
 
 All library changes, in descending order.
 
-Version 0.1.7
+Version 0.1.8
 -------------
 **Released on Dec 21, 2016.**
 
 - Update JWT Code for Core SDK Updates
+
+Version 0.1.7
+-------------
+** Released October 17, 2016 **
+
+- Update Sphinx Theme
+- Simplify the doc deployment process
 
 Version 0.1.6
 -------------
