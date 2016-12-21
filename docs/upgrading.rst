@@ -8,7 +8,8 @@ Stormpath-Lumen releases.
 
 Version 0.1.6 -> Version 0.1.7
 ------------------------------
-No Changes
+If you are relying on the JWT package from this, you will need to update your use to use the new namespace,
+Firebase\JWT\JWT.
 
 Version 0.1.5 -> Version 0.1.6
 ------------------------------

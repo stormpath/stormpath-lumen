@@ -7,10 +7,9 @@ All library changes, in descending order. something
 
 Version 0.1.7
 -------------
-** Released October 17, 2016 **
+**Released on Dec 21, 2016.**
 
-- Update Sphinx Theme
-- Simplify the doc deployment process
+- Update JWT Code for Core SDK Updates
 
 Version 0.1.6
 -------------
