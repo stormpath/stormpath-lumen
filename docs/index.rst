@@ -1,4 +1,4 @@
-Stormpath-Laravel's documentation
+Stormpath-Lumen's documentation
 =================================
 Stormpath-Lumen is a package for Lumen that makes it simple to add users and user data to your
 application. It aims to completely abstract away all user registration, login, authentication, and authorization
