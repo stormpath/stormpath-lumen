@@ -142,7 +142,7 @@ class StormpathServiceProvider extends ServiceProvider
 
     }
 
-    private function guardAgainstInvalidApplicationhref()
+    private function guardAgainstInvalidApplicationHref()
     {
         if (config('stormpath.application.href') == null) {
             throw new \InvalidArgumentException('Application href MUST be set.');
